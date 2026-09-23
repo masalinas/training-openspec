@@ -1,0 +1,2 @@
+# training-openspec
+Training Openspec
