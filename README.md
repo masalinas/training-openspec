@@ -15,7 +15,7 @@ If not exist (You must have installed some nodeJS 20.19++ version in your comput
   ```
 
 - **STEP03**: Initilize OpenSpec project. \
-  This will create some resources inside your project used by openspec tool. The unique question to be response will be the agent to be used. In my case Antigravity CLI:
+  This will create some resources inside your project used by openspec tool. The unique question to be response will be the agent to be used. In my case Antigravity CLI.
   ```shell
   openspec init
 
@@ -79,15 +79,13 @@ If not exist (You must have installed some nodeJS 20.19++ version in your comput
   Inside your agent list the OpenSpec commands installed:
   ![OpenSpec Commands](images/openspec-commands.png)
 
-- **STEP04**: Check the OpenSpec resources created in our project\
+- **STEP05**: Check the OpenSpec resources created in our project\
 These are the new folders and resources created by OpenSpect after init: new skills and commands installed in your agent CLI. Initially the specs and changes folder are empty, because we start from a empty project:
 ![OpenSpec Commands](images/openspec-resources.png)
 
 
-- **STEP05*: Start to explore the proposal for your project\
-Inside your agent execute the command /openspec-explore explaning what do you want to do in general:
-
-Start the exploration from our analisys:
+- **STEP06**: Start to explore the proposal for your project\
+Inside your agent execute the skill /openspec-explore explaning what do you want to do in general. Also we can use a prompt directly and not execute the skill like this: 'Help me explore how ...'. In my case I will trigger the skill exploration directly to create the first propose:
 
   ```shell
         ▄▀▀▄        Antigravity CLI 1.2.8
@@ -307,65 +305,99 @@ Start the exploration from our analisys:
     Si te parece bien, puedes invocar /opsx-propose o decirme "Crea la propuesta" para generar la estructura de planificación y tareas en OpenSpec.
     ```
 
-    Create the first propose after finalize the last explore
+- **STEP07**: Create the propose (plan) from explorer\
+  Inside your agent execute the skill /openspec-propose
 
-    ```Shell
-    > /openspec-propose initial-propose
+  Create the first propose after finalize the last explore
 
-    ● Bash(openspec context --json)
-    ● Bash(ls -la openspec/)
-    ● Read(~/git/training-openspec/openspec/config.yaml)
-    ● Bash(openspec new change "initial-propose")
-    ● Bash(openspec status --change "initial-propose" --json)
-    ● Bash(openspec instructions proposal --change "initial-propose" --json) (ctrl+o to expand)
+  ```Shell
+  > /openspec-propose initial-propose
 
-    ▸ Thought for 11s, 502 tokens
-      I'm focused on the `proposal.md` format. My thoughts have clarified the scope. I see this as a high-quality Python Proof of Concept for generating sine wave plots via a CLI, following modern Python best pr...
+  ● Bash(openspec context --json)
+  ● Bash(ls -la openspec/)
+  ● Read(~/git/training-openspec/openspec/config.yaml)
+  ● Bash(openspec new change "initial-propose")
+  ● Bash(openspec status --change "initial-propose" --json)
+  ● Bash(openspec instructions proposal --change "initial-propose" --json) (ctrl+o to expand)
 
-    ● Edit(~/git/training-openspec/openspec/changes/initial-propose/proposal.md)
-    ● Bash(openspec status --change "initial-propose" --json)
-    ● Bash(openspec instructions specs --change "initial-propose" --json) (ctrl+o to expand)
+  ▸ Thought for 11s, 502 tokens
+    I'm focused on the `proposal.md` format. My thoughts have clarified the scope. I see this as a high-quality Python Proof of Concept for generating sine wave plots via a CLI, following modern Python best pr...
 
-    ▸ Thought for 13s, 706 tokens
-      I'm now focusing on how to format the scenarios within the specification. I've decided to use a specific convention: `#### Scenario: ...` followed by `WHEN / THEN` statements. I've also established the for...
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/proposal.md)
+  ● Bash(openspec status --change "initial-propose" --json)
+  ● Bash(openspec instructions specs --change "initial-propose" --json) (ctrl+o to expand)
 
-    ● Edit(~/git/training-openspec/openspec/changes/initial-propose/specs/sine-generator/spec.md)
-    ● Bash(openspec instructions design --change "initial-propose" --json) (ctrl+o to expand)
+  ▸ Thought for 13s, 706 tokens
+    I'm now focusing on how to format the scenarios within the specification. I've decided to use a specific convention: `#### Scenario: ...` followed by `WHEN / THEN` statements. I've also established the for...
 
-    ▸ Thought for 19s, 655 tokens
-      I've clarified the project's goals and non-goals. My primary objective is a Python CLI application for sine wave generation, emphasizing clean architecture, standard library usage, and thorough testing, pa...
-    ● Edit(~/git/training-openspec/openspec/changes/initial-propose/design.md) 
-    ● Bash(openspec status --change "initial-propose" --json) 
-    ● Bash(openspec instructions tasks --change "initial-propose" --json) (ctrl+o to expand)
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/specs/sine-generator/spec.md)
+  ● Bash(openspec instructions design --change "initial-propose" --json) (ctrl+o to expand)
 
-    ▸ Thought for 14s, 532 tokens
-      I'm currently focused on defining the project's foundational elements. I intend to use `write_to_file` to generate `/home/miguel/git/training-openspec/openspec/changes/initial-propose/tasks.md`. Right now,...
+  ▸ Thought for 19s, 655 tokens
+    I've clarified the project's goals and non-goals. My primary objective is a Python CLI application for sine wave generation, emphasizing clean architecture, standard library usage, and thorough testing, pa...
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/design.md) 
+  ● Bash(openspec status --change "initial-propose" --json) 
+  ● Bash(openspec instructions tasks --change "initial-propose" --json) (ctrl+o to expand)
 
-    ● Edit(~/git/training-openspec/openspec/changes/initial-propose/tasks.md) 
-    ● Bash(openspec status --change "initial-propose") 
-    ● Bash(openspec validate initial-propose) (ctrl+o to expand)
+  ▸ Thought for 14s, 532 tokens
+    I'm currently focused on defining the project's foundational elements. I intend to use `write_to_file` to generate `/home/miguel/git/training-openspec/openspec/changes/initial-propose/tasks.md`. Right now,...
 
-      Se ha creado con éxito la propuesta de cambio initial-propose en OpenSpec.
-      
-      ### Ubicación del cambio
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/tasks.md) 
+  ● Bash(openspec status --change "initial-propose") 
+  ● Bash(openspec validate initial-propose) (ctrl+o to expand)
 
-      openspec/changes/initial-propose/
-      ──────
-      ### Artefactos Generados
-      
-      1. **proposal.md**: Define la motivación, los objetivos del cambio y los componentes que se van a añadir (scaffolding con uv, argparse, matplotlib, pytest, ruff y Dockerfile).
-      2. **spec.md**: Establece los requerimientos normativos (CLI con argparse, renderizado de la senoide, exportación PNG con timestamp senoide_YYYYMMDDHHmmSS.png y modo headless).
-      3. **design.md**: Documento de diseño técnico detallando la arquitectura del proyecto, la decisión de usar argparse, backend Agg en matplotlib, uv y empaquetado multi-stage Docker.
-      4. **tasks.md**: Lista de tareas y verificación dividida en 4 fases (Scaffolding, Core, Tests & Quality, Dockerization).
-      ──────
-      All artifacts needed for implementation are ready.
-      
-      Los artefactos están listos para revisión. Cuando desees comenzar a implementar la PoC, ejecuta /opsx-apply o pídeme directamente que aplique los cambios
-    ```
+    Se ha creado con éxito la propuesta de cambio initial-propose en OpenSpec.
+    
+    ### Ubicación del cambio
 
-   I forgot to explain that I want generate code and comments in english:
+    openspec/changes/initial-propose/
+    ──────
+    ### Artefactos Generados
+    
+    1. **proposal.md**: Define la motivación, los objetivos del cambio y los componentes que se van a añadir (scaffolding con uv, argparse, matplotlib, pytest, ruff y Dockerfile).
+    2. **spec.md**: Establece los requerimientos normativos (CLI con argparse, renderizado de la senoide, exportación PNG con timestamp senoide_YYYYMMDDHHmmSS.png y modo headless).
+    3. **design.md**: Documento de diseño técnico detallando la arquitectura del proyecto, la decisión de usar argparse, backend Agg en matplotlib, uv y empaquetado multi-stage Docker.
+    4. **tasks.md**: Lista de tareas y verificación dividida en 4 fases (Scaffolding, Core, Tests & Quality, Dockerization).
+    ──────
+    All artifacts needed for implementation are ready.
+    
+    Los artefactos están listos para revisión. Cuando desees comenzar a implementar la PoC, ejecuta /opsx-apply o pídeme directamente que aplique los cambios
+  ```
 
-      ```shell
-      All code and comments generated for this change must be in English. Please update any resource created under initial-propose accordingly if needed.
-      
-      ```
+  I forgot to explain that I want generate code and comments in english:
+
+  ```Shell
+  > All code and comments generated for this change must be in English. Please update any resource created under initial-propose accordingly if needed.
+
+  ▸ Thought for 13s, 600 tokens
+    I'm currently checking the resources created under `initial-propose`. I need to ensure all code and comments generated for this change are in English, so I am reviewing any artifacts in `openspec/changes/i...
+
+  ● Read(~/git/training-openspec/openspec/changes/initial-propose/proposal.md)
+  ● Read(~/git/training-openspec/openspec/changes/initial-propose/specs/sine-generator/spec.md) (ctrl+o to expand)
+
+  ▸ Thought for 19s, 706 tokens
+    I've observed the CLI flags in `specs/sine-generator/spec.md`: `--frecuencia`, `--amplitud`, `--color`, and `--exportar`. I'm now considering the implications of adhering to the "English only" requirement...
+
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/proposal.md)
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/specs/sine-generator/spec.md)
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/design.md) 
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/tasks.md) 
+  ● Bash(openspec validate initial-propose) (ctrl+o to expand)
+
+    All planning artifacts under initial-propose have been updated to enforce English for all generated code, inline comments, docstrings, CLI parameter names (--frequency, --amplitude, --color, --export), and
+    help messages.
+    
+    ### Updated Artifacts Summary
+    
+    1. **proposal.md**: Updated CLI flag definitions (--frequency, --amplitude, --color, --export) and added requirement for all code/comments to be in English.
+    2. **spec.md**: Updated requirement specifications and scenarios to use English CLI parameters and English help text guidance.
+    3. **design.md**: Refined architectural decisions, user feedback messages, and design constraints to mandate 100% English code/docstrings/comments.
+    4. **tasks.md**: Updated all task verification descriptions to explicitly implement English docstrings, comments, test function names, and CLI flags.
+    
+    Validation check (openspec validate initial-propose) completed successfully: Change 'initial-propose' is valid.
+    ──────
+    All artifacts needed for implementation are ready.
+    
+    When you are ready to implement the PoC in English, run /opsx-apply or ask me to apply this change.
+  ```
+    

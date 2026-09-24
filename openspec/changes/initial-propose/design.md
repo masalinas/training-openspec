@@ -2,17 +2,18 @@
 
 ## Context
 
-This design describes the architecture and technical decisions for building the Python Sine Wave Generator PoC. See `proposal.md` for motivation and `specs/sine-generator/spec.md` for normative requirements.
+This design describes the architecture and technical decisions for building the Python Sine Wave Generator PoC. See `proposal.md` for motivation and `specs/sine-generator/spec.md` for normative requirements. All source code, docstrings, inline comments, log output, and CLI parameter names (`--frequency`, `--amplitude`, `--color`, `--export`) MUST be in English.
 
 ## Goals / Non-Goals
 
 **Goals:**
 - Provide a clean `src/` layout Python package using `pyproject.toml` managed by `uv`.
-- Implement CLI parsing via standard library `argparse`.
+- Implement CLI parsing via standard library `argparse` using English argument names (`--frequency`, `--amplitude`, `--color`, `--export`).
 - Calculate sine wave data using `numpy` and plot using `matplotlib`.
 - Support headless rendering (`MPLBACKEND=Agg`) for container compatibility.
 - Ensure automated test coverage of CLI and generator logic using `pytest`.
 - Maintain code formatting and linting standards via `ruff`.
+- Ensure 100% of docstrings, type annotations, inline comments, and commit messages are in English.
 - Package application into a multi-stage Docker image using `python:3.11-slim`.
 
 **Non-Goals:**
@@ -43,4 +44,4 @@ This design describes the architecture and technical decisions for building the 
 ## Risks / Trade-offs
 
 - [Risk] Incorrect Matplotlib backend initialization in graphical environments → Configure `matplotlib.use('Agg')` explicitly before rendering to guarantee headless behavior regardless of system settings.
-- [Risk] Invalid color name provided by user → Catch `ValueError` or invalid matplotlib color specifications in `argparse` validation layer and present clear CLI user feedback.
+- [Risk] Invalid color name provided by user → Catch `ValueError` or invalid matplotlib color specifications in `argparse` validation layer and present clear CLI user feedback in English.
