@@ -1,7 +1,9 @@
-# training-openspec
-Training Openspec
+# Description
+Native AI Development using OpenSpec (Spect Driven Design Tool)
 
 ## Steps
+
+These are the steps followed to implement some changes using agents and the tool OpenSpec:
 
 - **STEP01**: Locate shell prompt in the project folder
   ```shell
@@ -9,7 +11,7 @@ Training Openspec
   ```
 
 - **STEP02**: Install or upgrade PpenSpec package\
-If not exist (You must have installed some nodeJS 20.19++ version in your computer)
+  If not exist (You must have installed some nodeJS 20.19++ version in your computer)
   ```shell
   npm install -g @fission-ai/openspec@latest
   ```
@@ -80,12 +82,12 @@ If not exist (You must have installed some nodeJS 20.19++ version in your comput
   ![OpenSpec Commands](images/openspec-commands.png)
 
 - **STEP05**: Check the OpenSpec resources created in our project\
-These are the new folders and resources created by OpenSpect after init: new skills and commands installed in your agent CLI. Initially the specs and changes folder are empty, because we start from a empty project:
-![OpenSpec Commands](images/openspec-resources.png)
+  These are the new folders and resources created by OpenSpect after init: new skills and commands installed in your agent CLI. Initially the specs and changes folder are empty, because we start from a empty project:
+  ![OpenSpec Commands](images/openspec-resources.png)
 
 
-- **STEP06**: Start to explore the proposal for your project\
-Inside your agent execute the skill /openspec-explore explaning what do you want to do in general. Also we can use a prompt directly and not execute the skill like this: 'Help me explore how ...'. In my case I will trigger the skill exploration directly to create the first propose:
+- **STEP06**: Start to explore the propose(plan) for your project\
+  Inside your agent execute the skill /openspec-explore explaning what do you want to do in general. Also we can use a prompt directly and not execute the skill like this: 'Help me explore how ...'. In my case I will trigger the skill exploration directly to create the first propose:
 
   ```shell
         ▄▀▀▄        Antigravity CLI 1.2.8
@@ -306,9 +308,7 @@ Inside your agent execute the skill /openspec-explore explaning what do you want
     ```
 
 - **STEP07**: Create the propose (plan) from explorer\
-  Inside your agent execute the skill /openspec-propose
-
-  Create the first propose after finalize the last explore
+  Inside your agent execute the skill /openspec-propose. Create the first propose after finalize the last explore
 
   ```Shell
   > /openspec-propose initial-propose
@@ -364,10 +364,10 @@ Inside your agent execute the skill /openspec-explore explaning what do you want
     Los artefactos están listos para revisión. Cuando desees comenzar a implementar la PoC, ejecuta /opsx-apply o pídeme directamente que aplique los cambios
   ```
 
-  I forgot to explain that I want generate code and comments in english:
+  Before I forgot to explain that I want generate code and comments in english. So change the actual propose(plan) to add this new specification:
 
   ```Shell
-  > All code and comments generated for this change must be in English. Please update any resource created under initial-propose accordingly if needed.
+  > All code and comments generated for the change must be in English. Please update any resource created under initial-propose accordingly if needed.
 
   ▸ Thought for 13s, 600 tokens
     I'm currently checking the resources created under `initial-propose`. I need to ensure all code and comments generated for this change are in English, so I am reviewing any artifacts in `openspec/changes/i...
@@ -402,6 +402,8 @@ Inside your agent execute the skill /openspec-explore explaning what do you want
   ```
     
 - **STEP08**: Execute the propose (plan)\
+  We can execute the command 
+
   ```Shell
   > Apply the initial-propose change.
 
@@ -518,7 +520,37 @@ Inside your agent execute the skill /openspec-explore explaning what do you want
 - **STEP09**: Archive the propose (plan)\
   Now we can archive the plan implemented executing the command /openspec-archive-change <name of the change> or sending a prompt like this
   ```Shell
-    Archive the initial-propose change
+    > Archive the initial-propose change
+
+    ● Bash(openspec archive initial-propose)
+    ● ManageTask(status task-171)
+    ● ManageTask(send_input task-171)
+    ● ManageTask(status task-171)
+    ● Bash(openspec list --specs) (ctrl+o to expand)
+
+      The OpenSpec change initial-propose has been archived successfully as 2026-09-25-initial-propose.
+      
+      ### Summary of Archive Execution
+      
+      • Main Specification Updated: Created main project capability spec at spec.md (+4 requirements synced).
+      • Change Archive Location: openspec/changes/archive/2026-09-25-initial-propose/
+      • Active Specs Count: 1 active capability (sine-generator with 4 verified requirements).
+      ──────
+      ### Project Status & Artifacts Delivered
+      
+      1. Package Scaffolding: pyproject.toml configured with uv, matplotlib, numpy, pytest, ruff, plus .gitignore and .dockerignore.
+      2. Core Source Code:
+          • utils.py
+          • generator.py
+          • cli.py
+          • main.py
+      3. Automated Test Suite:
+          • test_utils.py
+          • test_generator.py
+          • test_cli.py
+      4. Containerization: Multi-stage Dockerfile based on python:3.11-slim with uv (tested and verified with docker build and docker run).
+      
+      All code, comments, docstrings, and CLI parameters (--frequency, --amplitude, --color, --export) are completely in English and passing 100% of unit tests and linter checks.
   ```
 
 ## Some Notes
