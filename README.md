@@ -1,23 +1,28 @@
 # Description
-Native AI Development using OpenSpec (Spect Driven Design Tool)
+Native AI PoC Development using OpenSpec (Spect Driven Design Tool) and Antigravity CLI agent.
 
 ## Steps
 
-These are the steps followed to implement some changes using agents and the tool OpenSpec:
+These are the steps followed to implement a simple Python PoC to draw a senoide with some console parameters:
 
-- **STEP01**: Locate shell prompt in the project folder
+- **STEP01**: Create code base folder for your project
+  Create a empty codebase folder for your project and locate the shell inside:
+
   ```shell
+  mkdir path/to/your/project
   cd path/to/your/project
   ```
 
-- **STEP02**: Install or upgrade PpenSpec package\
-  If not exist (You must have installed some nodeJS 20.19++ version in your computer)
+- **STEP02**: Install or upgrade OpenSpec package\
+  If not exist (You must have installed some nodeJS 20.19++ version in your computer) install the OpenSpec CLI in your system:
+
   ```shell
   npm install -g @fission-ai/openspec@latest
   ```
 
-- **STEP03**: Initilize OpenSpec project. \
-  This will create some resources inside your project used by openspec tool. The unique question to be response will be the agent to be used. In my case Antigravity CLI.
+- **STEP03**: Initilize a OpenSpec project\
+  Initialize the OpenSpec project executing this command. This will create some resources inside your project used by OpenSpec tool. The unique question to be response to this tool, will be the agent to be used, in our case Antigravity:
+
   ```shell
   openspec init
 
@@ -63,31 +68,44 @@ These are the steps followed to implement some changes using agents and the tool
 
   ```
 
-  If you want update OpenSpec execute:
+  If you need update OpenSpec execute this command:
   ```shell
   openspec update
   ```
 
-  To uninstall OpenSpect execute:
+  If you want uninstall OpenSpect tool execute:
   ```shell
   npm uninstall -g @fission-ai/openspec
   ```
 
 - **STEP04**: Start your agent antigravity from your codebase folder:
+  Right now, the project has all resources to be used by Openspect and all skills and commands to be used by the agent antigravity:
+
   ```shell
   agy
   ```
 
-  Inside your agent list the OpenSpec commands installed:
+  Inside your agent we can list the OpenSpec commands and skills installed:
   ![OpenSpec Commands](images/openspec-commands.png)
 
 - **STEP05**: Check the OpenSpec resources created in our project\
-  These are the new folders and resources created by OpenSpect after init: new skills and commands installed in your agent CLI. Initially the specs and changes folder are empty, because we start from a empty project:
+  These are the new folders and resources created by OpenSpect after init: new skills and commands installed in your agent CLI. Right now, any change exist in the folder changes and the global specs under specs are empty too:
+
   ![OpenSpec Commands](images/openspec-resources.png)
 
 
 - **STEP06**: Start to explore the propose(plan) for your project\
-  Inside your agent execute the skill /openspec-explore explaning what do you want to do in general. Also we can use a prompt directly and not execute the skill like this: 'Help me explore how ...'. In my case I will trigger the skill exploration directly to create the first propose:
+  Inside your agent execute the skill /openspec-explore, we started a bidirectional conversatiopn with our agent, explaning what do you want to do, the policies and good preactisys to apply. So this is the first change to create we must add in this first explore: 
+    - The role of the angent to create this PoC.
+    - The policies and best practices.
+    - The tech-stack at first to use.
+    - And any general rule to be used in any later change. 
+
+  Also I will include in this first change the particular specifications to implement the PoC.\
+  Later
+
+  
+  Also we can use a prompt directly and not execute the skill like this: 'Help me explore how ...'. In my case I will trigger the skill exploration directly to create the first propose:
 
   ```shell
         ▄▀▀▄        Antigravity CLI 1.2.8
@@ -553,9 +571,13 @@ These are the steps followed to implement some changes using agents and the tool
       All code, comments, docstrings, and CLI parameters (--frequency, --amplitude, --color, --export) are completely in English and passing 100% of unit tests and linter checks.
   ```
 
-## Some Notes
-- If the agent crash or is closes and you must continue any task, you can write this prompt:
+## Some notes
+- If the agent crash or it's closes and you want continue from you last change task, write this prompt:
 
   ```Shell
   "Resume the apply workflow for the [name-of-change] change. Please read openspec/changes/[name-of-change]/tasks.md, find the first uncompleted task [ ], evaluate the current state of the code for that task, and continue the implementation."
   ```
+
+## Some links
+
+- [OpenSpec Documentation](https://openspec.dev/docs)

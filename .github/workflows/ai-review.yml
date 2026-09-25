@@ -1,0 +1,36 @@
+name: AI Code Review (Gemini)
+
+on:
+  pull_request:
+    # Triggered when creating the PR or pushing new commits to it
+    types: [opened, synchronize]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # Importante: traer historial suficiente para hacer el diff
+          fetch-depth: 0 
+
+      - name: Gemini Code Review
+        # Use a generic action that supports LiteLLM (and therefore Gemini).
+        # Note: Make sure to look for the most up-to-date version/fork of these types of tools on the GitHub Marketplace
+        uses: anc95/ChatGPT-CodeReview@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # We use LiteLLM syntax to specify Gemini
+          MODEL: "gemini/gemini-1.5-pro-latest"
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        with:
+          # You can inject your global rules here. 
+          # For example, the rules you defined about TDD and testing.
+          system_message: |
+            You are an expert software architect.
+                        Review this code.
+                        You must strictly verify:
+            1. That the corresponding unit tests are included (TDD approach).
+            2. That the code has appropriate comments.
+            3. That it complies with Clean Code standards.

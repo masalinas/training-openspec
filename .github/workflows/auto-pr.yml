@@ -1,0 +1,30 @@
+name: Auto Create Pull Request
+
+on:
+  push:
+    branches:
+      # Only reacts to pushing branches that begin with feature/
+      - 'feature/*'
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Verifies if a PR already exists to avoid errors. If not, it creates one pointing to main.
+        run: |
+          pr_exists=$(gh pr list --head "${GITHUB_REF_NAME}" --json number -q 'length')
+          if [ "$pr_exists" -eq "0" ]; then
+            gh pr create \
+              --title "Automated PR: ${GITHUB_REF_NAME}" \
+              --body "This PR was automatically created by GitHub Actions from ${GITHUB_REF_NAME}." \
+              --base main \
+              --head "${GITHUB_REF_NAME}"
+          else
+            echo "A PR for ${GITHUB_REF_NAME} already exists."
+          fi
