@@ -1,0 +1,39 @@
+[project]
+name = "sine-generator"
+version = "0.1.0"
+description = "Proof of Concept CLI tool to generate and export sine wave plots"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Developer" }
+]
+dependencies = [
+    "matplotlib>=3.8.0",
+    "numpy>=1.26.0",
+]
+
+[project.scripts]
+sine-generator = "sine_generator.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.3.0",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+pythonpath = ["src"]

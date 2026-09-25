@@ -401,3 +401,129 @@ Inside your agent execute the skill /openspec-explore explaning what do you want
     When you are ready to implement the PoC in English, run /opsx-apply or ask me to apply this change.
   ```
     
+- **STEP08**: Execute the propose (plan)\
+  ```Shell
+  > Apply the initial-propose change.
+
+  ● Bash(openspec instructions apply --change "initial-propose" --json)
+  ● Read(~/git/training-openspec/.agents/skills/openspec-apply-change/SKILL.md) (ctrl+o to expand)
+
+  ▸ Thought for 10s, 917 tokens
+    I've specified the project dependencies in `pyproject.toml`, including `matplotlib` and `numpy`. I've also set up the project metadata, like the name, version, and a brief description. I've also declared t...
+
+  ● Edit(~/git/training-openspec/pyproject.toml)
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/tasks.md)
+  ● Edit(~/git/training-openspec/.gitignore)
+  ● Edit(~/git/training-openspec/.dockerignore)
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/tasks.md)
+  ● Edit(~/git/training-openspec/src/sine_generator/__init__.py)
+  ● Edit(~/git/training-openspec/src/sine_generator/utils.py)
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/tasks.md) (ctrl+o to expand)
+
+  ▸ Thought for 16s, 637 tokens
+    I'm now refining the `src/sine_generator/generator.py` module. Specifically, I'm working on the `plot_sine_wave` function, and I am incorporating a docstring with type hints, and comments. I have added typ...
+  ● Edit(~/git/training-openspec/src/sine_generator/generator.py)
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/tasks.md) (ctrl+o to expand)
+
+  ▸ Thought for 27s, 516 tokens
+    I'm now diving into the implementation of `src/sine_generator/cli.py` and `main.py`, focusing on the command-line interface. I'm leveraging `argparse` to handle `--frequency`, `--amplitude`, `--color`, and...
+  ● Edit(~/git/training-openspec/src/sine_generator/cli.py) (ctrl+o to expand)
+
+  ▸ Thought for 19s, 354 tokens
+    I'm currently focused on defining the main entry point for the sine generator application, specifically crafting the `src/sine_generator/main.py` file. This involves importing necessary modules such as `sy...
+
+  ● Edit(~/git/training-openspec/src/sine_generator/main.py)
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/tasks.md)
+  ● Edit(~/git/training-openspec/tests/__init__.py) (ctrl+o to expand)
+
+  ● Read(~/git/training-openspec/openspec/changes/initial-propose/tasks.md)
+  ● Bash(uv run pytest tests/test_utils.py)
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/tasks.md) (ctrl+o to expand)
+
+  ▸ Thought for 17s, 539 tokens
+    I'm now focused on Task 3.2: writing unit tests in `tests/test_generator.py` for sine wave generation and file export, including English docstrings. I'm starting by verifying if the necessary test file act...
+
+  ● Edit(~/git/training-openspec/tests/test_generator.py)
+  ● Bash(uv run pytest tests/test_generator.py)
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/tasks.md) (ctrl+o to expand)
+
+  ▸ Thought for 30s, 688 tokens
+    I've crafted several unit tests in `test_cli.py` to validate CLI behavior. These tests cover default and custom argument parsing for frequency, amplitude, color, and the export flag. I'm also ensuring shor...
+  ● Edit(~/git/training-openspec/tests/test_cli.py)
+  ● Bash(uv run pytest)
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/tasks.md)
+  ● Bash(uv run ruff check src tests && uv run ruff format --check src tests)
+  ● Bash(uv run ruff check --fix src tests && uv run ruff format src tests) (ctrl+o to expand)
+
+  ▸ Thought for 13s, 523 tokens
+    I'm currently focused on fixing line lengths in `src/sine_generator/cli.py`, `src/sine_generator/utils.py`, `tests/test_cli.py`, and `tests/test_utils.py`. The aim is to enhance readability and adhere to t...
+  ● Edit(~/git/training-openspec/src/sine_generator/cli.py)
+  ● Edit(~/git/training-openspec/src/sine_generator/utils.py)
+  ● Edit(~/git/training-openspec/tests/test_cli.py)
+  ● Edit(~/git/training-openspec/tests/test_utils.py)
+  ● Bash(uv run ruff check src tests && uv run ruff format --check src tests && uv run pytest)
+  ● Bash(uv run ruff check --fix src tests && uv run ruff format src tests)
+  ● Bash(uv run ruff check src tests && uv run ruff format --check src tests && uv run pytest)
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/tasks.md) (ctrl+o to expand)
+
+  ▸ Thought for 10s, 500 tokens
+    I'm currently focused on crafting a multi-stage `Dockerfile` using `python:3.11-slim` and `uv` for dependency management. I will make sure to include English comments. I'm verifying that the `docker build`...
+
+  ● Edit(~/git/training-openspec/Dockerfile) 
+  ● Read(~/git/training-openspec/README.md) 
+  ● Bash(docker build -t sine-generator:latest .)
+  ● ManageTask(status task-150) 
+  ● ManageTask(status task-150) 
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/tasks.md) 
+  ● Bash(docker run --rm -v "$(pwd):/app/output" -w /app/output sine-generator:latest --frequency 3.0 --amplitude 2.0 --color red --export) 
+  ● Bash(ls -la senoide_*.png) 
+  ● Bash(rm senoide_*.png) 
+  ● Edit(~/git/training-openspec/openspec/changes/initial-propose/tasks.md) 
+  ● Bash(openspec instructions apply --change "initial-propose" --json) (ctrl+o to expand)
+
+    ## Implementation Complete
+    
+    Change: initial-propose
+    Schema: spec-driven
+    Progress: 11/11 tasks complete ✓ 
+    ──────
+    ### Completed Tasks
+    
+    #### 1. Project Scaffolding & Configuration
+    
+    [✓] 1.1 Created pyproject.toml configured with uv, matplotlib, numpy, pytest, and ruff.
+    [✓] 1.2 Created .gitignore and .dockerignore.
+    
+    #### 2. Core Implementation
+
+    [✓] 2.1 Implemented utils.py with generate_timestamped_filename() generating senoide_YYYYMMDDHHmmSS.png formatted filenames.
+    [✓] 2.2 Implemented generator.py with numpy calculation engine and headless matplotlib (MPLBACKEND=Agg) plot rendering.
+    [✓] 2.3 Implemented cli.py and main.py using standard library argparse supporting --frequency, --amplitude, --color, and --export.
+    
+    #### 3. Testing & Code Quality
+    
+    [✓] 3.1 Added unit tests in test_utils.py.
+    [✓] 3.2 Added unit tests in test_generator.py.
+    [✓] 3.3 Added CLI unit tests in test_cli.py.
+    [✓] 3.4 Formatted and linted code using ruff check and ruff format (100% compliant). Ran pytest suite (11/11 tests passing).
+    
+    #### 4. Containerization & Deployment
+    
+    [✓] 4.1 Created multi-stage Dockerfile based on python:3.11-slim with uv and verified successful image build.
+    [✓] 4.2 Verified containerized execution (docker run) generating PNG plot export files via container volume mounts.
+    ──────
+    All tasks are complete! You can archive this change anytime with /opsx-archive.
+  ```
+
+- **STEP09**: Archive the propose (plan)\
+  Now we can archive the plan implemented executing the command /openspec-archive-change <name of the change> or sending a prompt like this
+  ```Shell
+    Archive the initial-propose change
+  ```
+
+## Some Notes
+- If the agent crash or is closes and you must continue any task, you can write this prompt:
+
+  ```Shell
+  "Resume the apply workflow for the [name-of-change] change. Please read openspec/changes/[name-of-change]/tasks.md, find the first uncompleted task [ ], evaluate the current state of the code for that task, and continue the implementation."
+  ```
