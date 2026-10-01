@@ -13,7 +13,7 @@ These are the steps followed to implement a simple Python PoC to draw a senoide 
   cd path/to/your/project
   ```
 
-- **STEP02**: Install or upgrade OpenSpec package\
+- **STEP02**: Install or upgrade OpenSpec package \
   If not exist (You must have installed some nodeJS 20.19++ version in your computer) install the OpenSpec CLI in your system:
 
   ```shell
