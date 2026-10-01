@@ -23,7 +23,7 @@ jobs:
             gh pr create \
               --title "Automated PR: ${GITHUB_REF_NAME}" \
               --body "This PR was automatically created by GitHub Actions from ${GITHUB_REF_NAME}." \
-              --base main \
+              --base master \
               --head "${GITHUB_REF_NAME}"
           else
             echo "A PR for ${GITHUB_REF_NAME} already exists."

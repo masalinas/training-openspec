@@ -21,7 +21,8 @@ def main(args: Sequence[str] | None = None) -> int:
 
     print(
         f"Generating sine wave -> Frequency: {parsed.frequency} Hz, "
-        f"Amplitude: {parsed.amplitude}, Color: {parsed.color}"
+        f"Amplitude: {parsed.amplitude}, Color: {parsed.color}, "
+        f"Line Style: {parsed.line_style}"
     )
 
     time, wave = generate_sine_data(
@@ -33,7 +34,13 @@ def main(args: Sequence[str] | None = None) -> int:
         output_file = generate_timestamped_filename()
         print(f"Exporting plot to PNG file: {output_file}")
 
-    plot_sine_wave(time, wave, color=parsed.color, output_path=output_file)
+    plot_sine_wave(
+        time,
+        wave,
+        color=parsed.color,
+        line_style=parsed.line_style,
+        output_path=output_file,
+    )
 
     if output_file:
         print("Export completed successfully.")
