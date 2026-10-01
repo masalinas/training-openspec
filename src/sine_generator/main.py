@@ -15,7 +15,7 @@ def main(args: Sequence[str] | None = None) -> int:
         args: Sequence of CLI command line arguments.
 
     Returns:
-        Exit code (0 for success ).
+        Exit code (0 for success).
     """
     parsed = parse_args(args)
 
