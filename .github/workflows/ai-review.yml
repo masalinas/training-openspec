@@ -23,7 +23,7 @@ jobs:
           # Inyecta tu API Key nativa directamente
           gemini-key: ${{ secrets.GEMINI_API_KEY }}
           # Especifica el modelo Pro que quieres utilizar
-          model: "gemini-1.5-flash"
+          model: "gemini-3.5-flash-lite"
           # Tus reglas de revisión customizadas
           prompt: |
             You are an expert software architect.
