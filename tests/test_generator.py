@@ -38,7 +38,17 @@ def test_plot_sine_wave_with_export(tmp_path: Path) -> None:
     t, y = generate_sine_data(frequency=1.0, amplitude=1.0, num_points=100)
     output_file = tmp_path / "test_sine.png"
 
-    plot_sine_wave(t, y, color="green", output_path=output_file)
+    plot_sine_wave(t, y, color="green", line_style="dotted", output_path=output_file)
 
     assert output_file.exists()
     assert output_file.stat().st_size > 0
+
+
+def test_plot_sine_wave_line_style() -> None:
+    """Test matplotlib line style settings on rendered curve."""
+    t, y = generate_sine_data(frequency=1.0, amplitude=1.0, num_points=100)
+    fig = plot_sine_wave(t, y, color="blue", line_style="dashed")
+    ax = fig.gca()
+    line = ax.lines[0]
+    assert line.get_linestyle() == "--"
+

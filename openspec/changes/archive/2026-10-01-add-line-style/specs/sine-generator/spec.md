@@ -1,9 +1,6 @@
-# sine-generator Specification
+# Spec Delta: sine-generator
 
-## Purpose
-Provides a command-line interface tool to calculate and visualize mathematical sine waves with customizable parameters and PNG export capability.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: CLI Argument Parsing
 The system SHALL accept five parameters via standard library `argparse`: frequency (`--frequency`), amplitude (`--amplitude`), line color (`--color`), line style (`--line-style` / `-l`), and an optional PNG export flag (`--export`).
@@ -26,17 +23,3 @@ The system SHALL calculate sine wave data points for the given frequency and amp
 #### Scenario: Rendering a sine wave plot
 - **WHEN** valid frequency, amplitude, color, and line style parameters are provided to the generator engine
 - **THEN** the system generates data points and plots the curve with the specified line color and line style
-
-### Requirement: Timestamped PNG Export
-When the export flag is enabled, the system SHALL save the generated plot as a PNG image named `senoide_YYYYMMDDHHmmSS.png` using the current local system timestamp.
-
-#### Scenario: Exporting plot to PNG file
-- **WHEN** the export flag is set to True and the plot is generated
-- **THEN** a PNG file named `senoide_YYYYMMDDHHmmSS.png` with the current timestamp format is saved in the working directory
-
-### Requirement: Headless Container Execution
-The system SHALL configure matplotlib to use the non-interactive `Agg` backend (`MPLBACKEND=Agg`) so that rendering and PNG exports work seamlessly inside containerized environments without an X11 display.
-
-#### Scenario: Execution inside Docker container without display
-- **WHEN** the application is executed inside the Docker container without an X11 display server
-- **THEN** the application completes plot rendering and PNG generation without graphical errors

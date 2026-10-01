@@ -33,21 +33,25 @@ def plot_sine_wave(
     time: np.ndarray,
     wave: np.ndarray,
     color: str = "blue",
+    line_style: str = "solid",
     output_path: str | Path | None = None,
 ) -> plt.Figure:
-    """Render a sine wave plot using Matplotlib with customizable color.
+    """Render a sine wave plot using Matplotlib with customizable color and line style.
 
     Args:
         time: Array of time sampling points.
         wave: Array of calculated sine wave values.
         color: Matplotlib color string (e.g., "red", "#FF0000", "blue").
+        line_style: Matplotlib line style string (e.g., "solid", "dashed", "dashdot", "dotted").
         output_path: Optional file path to save the generated PNG plot.
 
     Returns:
         The matplotlib Figure object.
-    """
+    """  # noqa: E501
     fig, ax = plt.subplots(figsize=(10, 6))
-    ax.plot(time, wave, color=color, linewidth=2, label="Sine Wave")
+    ax.plot(
+        time, wave, color=color, linestyle=line_style, linewidth=2, label="Sine Wave"
+    )
     ax.set_title("Sine Wave Plot", fontsize=14)
     ax.set_xlabel("Time (s)", fontsize=12)
     ax.set_ylabel("Amplitude", fontsize=12)

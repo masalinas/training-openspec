@@ -12,27 +12,47 @@ def test_cli_default_arguments() -> None:
     assert parsed.frequency == 1.0
     assert parsed.amplitude == 1.0
     assert parsed.color == "blue"
+    assert parsed.line_style == "solid"
     assert parsed.export is False
 
 
 def test_cli_custom_arguments() -> None:
-    """Test custom CLI arguments for frequency, amplitude, color, and export flag."""
+    """Test custom CLI arguments for frequency, amplitude, color, line_style, and export flag."""
     parsed = parse_args(
-        ["--frequency", "5.5", "--amplitude", "3.2", "--color", "red", "--export"]
+        [
+            "--frequency",
+            "5.5",
+            "--amplitude",
+            "3.2",
+            "--color",
+            "red",
+            "--line-style",
+            "dashed",
+            "--export",
+        ]
     )
     assert parsed.frequency == 5.5
     assert parsed.amplitude == 3.2
     assert parsed.color == "red"
+    assert parsed.line_style == "dashed"
     assert parsed.export is True
 
 
 def test_cli_short_flags() -> None:
-    """Test short CLI flag aliases (-f, -a, -c, -e)."""
-    parsed = parse_args(["-f", "2.0", "-a", "1.5", "-c", "green", "-e"])
+    """Test short CLI flag aliases (-f, -a, -c, -l, -e)."""
+    parsed = parse_args(["-f", "2.0", "-a", "1.5", "-c", "green", "-l", "dotted", "-e"])
     assert parsed.frequency == 2.0
     assert parsed.amplitude == 1.5
     assert parsed.color == "green"
+    assert parsed.line_style == "dotted"
     assert parsed.export is True
+
+
+def test_cli_invalid_line_style() -> None:
+    """Test that invalid line_style raises SystemExit with error."""
+    with pytest.raises(SystemExit) as exc_info:
+        parse_args(["--line-style", "invalid_style"])
+    assert exc_info.value.code != 0
 
 
 def test_cli_help_output(capsys: pytest.CaptureFixture[str]) -> None:
@@ -46,6 +66,7 @@ def test_cli_help_output(capsys: pytest.CaptureFixture[str]) -> None:
     assert "Frequency of the sine wave" in captured.out
     assert "Peak amplitude" in captured.out
     assert "Line color" in captured.out
+    assert "Line style" in captured.out
     assert "Export the generated plot" in captured.out
 
 

@@ -16,21 +16,19 @@ jobs:
           fetch-depth: 0 
 
       - name: Gemini Code Review
-        # Use a generic action that supports LiteLLM (and therefore Gemini).
-        # Note: Make sure to look for the most up-to-date version/fork of these types of tools on the GitHub Marketplace
-        uses: anc95/ChatGPT-CodeReview@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # We use LiteLLM syntax to specify Gemini
-          MODEL: "gemini/gemini-1.5-pro-latest"
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        uses: sshnaidm/gemini-code-review-action@v2
         with:
-          # You can inject your global rules here. 
-          # For example, the rules you defined about TDD and testing.
-          system_message: |
+          # Inyecta el token de GitHub para que el agente pueda publicar los comentarios
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Inyecta tu API Key nativa directamente
+          gemini-key: ${{ secrets.GEMINI_API_KEY }}
+          # Especifica el modelo Pro que quieres utilizar
+          model: "gemini-1.5-pro-latest"
+          # Tus reglas de revisión customizadas
+          prompt: |
             You are an expert software architect.
-                        Review this code.
-                        You must strictly verify:
+            Review this code.
+            You must strictly verify:
             1. That the corresponding unit tests are included (TDD approach).
             2. That the code has appropriate comments.
             3. That it complies with Clean Code standards.

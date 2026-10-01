@@ -43,6 +43,15 @@ def create_parser() -> argparse.ArgumentParser:
     )
 
     parser.add_argument(
+        "-l",
+        "--line-style",
+        type=str,
+        default="solid",
+        choices=["solid", "dashed", "dashdot", "dotted"],
+        help="Line style for the plot ('solid', 'dashed', 'dashdot', 'dotted')",
+    )
+
+    parser.add_argument(
         "-e",
         "--export",
         action="store_true",
